@@ -13,5 +13,7 @@ big integer library is a c++ library for handling integer out of bound of int.
 ## How to
 ### First step
     1.for online coding platform
-        paste the code from the [bigInt.h] {}
-    
+        paste the code from the bigInt.h in your solution
+    2.for offline download the repo and place it in same folder as of your project
+## Declaration and Using
+### Declaration
