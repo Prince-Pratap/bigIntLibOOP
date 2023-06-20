@@ -1,5 +1,5 @@
-#ifndef bigInt_H_INCLUDED
-#define bigInt_H_INCLUDED
+#ifndef BIGINT_H_INCLUDED
+#define BIGINT_H_INCLUDED
 
 
 #include <iostream>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class bigInt
+class bigint
 {
     //--------------------------By- Prince Pratap------------------------------//
 
@@ -52,10 +52,10 @@ private:
         return true;
     }
 
-    bigInt convert(string num)
+    bigint convert(string num)
     {
 
-        bigInt b;
+        bigint b;
         b.isNeg = (num[0] == '-');
 
         int i = num[0] == '-' or num[0] == '+';
@@ -74,25 +74,25 @@ private:
 
 public:
     //-----------------------------CONSTRUCTORS-------------------------------//
-    bigInt()
+    bigint()
     {
         this->num = "";
         this->isNeg = false;
     }
-    bigInt(string num)
+    bigint(string num)
     {
         assert(isValid(num));
 
         *this = convert(num);
     }
-    bigInt(int num)
+    bigint(int num)
     {
         *this = to_string(num);
     }
     //------------------------------------------------------------------------//
 
     //-------------------------INPUT/OUTPUT OPERATORS-------------------------//
-    friend istream &operator>>(istream &input, bigInt &b)
+    friend istream &operator>>(istream &input, bigint &b)
     {
         string s;
         input >> s;
@@ -100,7 +100,7 @@ public:
         b = b.convert(s);
         return input;
     }
-    friend ostream &operator<<(ostream &output, const bigInt &b)
+    friend ostream &operator<<(ostream &output, const bigint &b)
     {
         if (b.isNeg)
             output << "-" << b.num;
@@ -111,7 +111,7 @@ public:
     //------------------------------------------------------------------------//
 
     //-------------------------ASSIGNMENT OPERATORS--------------------------//
-    void operator=(const bigInt &b)
+    void operator=(const bigint &b)
     {
         this->num = b.num;
         this->isNeg = b.isNeg;
@@ -129,7 +129,7 @@ public:
     //------------------------------------------------------------------------//
 
     //-------------------------COMPARISON OPERATORS--------------------------//
-    bool operator<(const bigInt &b)
+    bool operator<(const bigint &b)
     {
 
         if (this->num.length() < b.num.length())
@@ -139,32 +139,32 @@ public:
 
         return this->num < b.num;
     }
-    bool operator<=(const bigInt &b)
+    bool operator<=(const bigint &b)
     {
         return *(this) < b or this->num <= b.num;
     }
-    bool operator>(const bigInt &b)
+    bool operator>(const bigint &b)
     {
         return !(*this <= b);
     }
-    bool operator>=(const bigInt &b)
+    bool operator>=(const bigint &b)
     {
         return !(*this < b);
     }
-    bool operator==(const bigInt &b)
+    bool operator==(const bigint &b)
     {
         return this->num == b.num and this->isNeg == b.isNeg;
     }
-    bool operator!=(const bigInt &b)
+    bool operator!=(const bigint &b)
     {
         return !((*this) == b);
     }
     //----------------------------------------------------------------------//
     //-------------------------ARITHMETIC OPERATORS--------------------------//
-    bigInt operator+(const bigInt &b)
+    bigint operator+(const bigint &b)
     {
         bool differentSigns = (b.isNeg ^ this->isNeg);
-        bigInt result;
+        bigint result;
 
         if (differentSigns)
         {
@@ -177,13 +177,13 @@ public:
         {
             result = convert(add(this->num, b.num));
             result.isNeg = (this->isNeg and b.isNeg);
-        }
             return result;
+        }
     }
-    bigInt operator-(const bigInt &b)
+    bigint operator-(const bigint &b)
     {
         bool differentSigns = (b.isNeg ^ this->isNeg);
-        bigInt result;
+        bigint result;
 
         if (differentSigns)
         {
@@ -201,27 +201,27 @@ public:
                 result = convert(subtract(this->num, b.num));
             else
                 result = convert(subtract(b.num, this->num));
-        }
             return result;
+        }
     }
-    bigInt operator*(const bigInt &b)
+    bigint operator*(const bigint &b)
     {
-        bigInt result;
+        bigint result;
         result = convert(multiply(this->num, b.num));
         result.isNeg = this->isNeg ^ b.isNeg;
         return result;
     }
-    bigInt operator/(const bigInt &b)
+    bigint operator/(const bigint &b)
     {
         assert(b.num != "0");
-        bigInt result;
+        bigint result;
         result = convert(divide(this->num, b.num));
         result.isNeg = (result.num != "0" and (this->isNeg ^ b.isNeg));
         return result;
     }
-    bigInt operator%(const bigInt &b)
+    bigint operator%(const bigint &b)
     {
-        bigInt result;
+        bigint result;
         result = convert(modulo(this->num, b.num));
         result.isNeg = this->isNeg;
         return result;
@@ -230,7 +230,7 @@ public:
 
 private:
     //-----------------------------STRING / 2--------------------------------//
-    string divideBy2(bigInt x)
+    string divideBy2(bigint x)
     {
         int current = 0;
         string res = "";
@@ -382,14 +382,14 @@ private:
     {
         if (b == "1")
             return a;
-        bigInt l;
-        bigInt r = (bigInt)(a);
-        bigInt one = (bigInt) "1";
+        bigint l;
+        bigint r = (bigint)(a);
+        bigint one = (bigint) "1";
         while (r - l > one)
         {
-            bigInt m = divideBy2(l + r);
+            bigint m = divideBy2(l + r);
 
-            if (m * b <= (bigInt)a)
+            if (m * b <= (bigint)a)
                 l = m;
             else
                 r = m;
@@ -401,8 +401,8 @@ private:
     string modulo(const string &a, const string &b)
     {
 
-        bigInt a_ = (bigInt)(a);
-        bigInt b_ = (bigInt)(b);
+        bigint a_ = (bigint)(a);
+        bigint b_ = (bigint)(b);
 
         return (a_ - ((a_ / b_) * b_)).num;
     }
@@ -413,42 +413,42 @@ namespace MathFunctions
 {
 
 
-    bigInt factorial(int n)
+    bigint factorial(int n)
     {
 
-        bigInt res("1");
+        bigint res("1");
         for (int i = 2; i <= n; i++)
         {
-            res = res * (bigInt)(to_string(i));
+            res = res * (bigint)(to_string(i));
         }
         return res;
     }
 
-    bigInt gcd(bigInt a, bigInt b)
+    bigint gcd(bigint a, bigint b)
     {
-        if (b == (bigInt) "0")
+        if (b == (bigint) "0")
             return a;
 
         return gcd(b, a % b);
     }
 
-    bigInt lcm(bigInt a, bigInt b)
+    bigint lcm(bigint a, bigint b)
     {
         return a * (b / gcd(a, b));
     }
 
-    bigInt pow(bigInt x, bigInt n)
+    bigint pow(bigint x, bigint n)
     {
-        bigInt ans;
+        bigint ans;
         ans = "1";
-        while (n > (bigInt)("0"))
+        while (n > (bigint)("0"))
         {
-            bool setBit = (n % (bigInt)("2") == (bigInt) "1");
+            bool setBit = (n % (bigint)("2") == (bigint) "1");
             if (setBit)
                 ans = ans * x;
             x = x * x;
 
-            n = n / (bigInt)("2");
+            n = n / (bigint)("2");
         }
         return ans;
     }
@@ -459,5 +459,4 @@ namespace MathFunctions
 //-----------------------------------------------------------------------//
 
 #endif
-
 
