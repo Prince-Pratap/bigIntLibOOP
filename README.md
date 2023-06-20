@@ -17,11 +17,12 @@ big integer library is a c++ library for handling integer out of bound of int.
     2.for offline download the repo and place it in same folder as of your project
 ## Declaration and Using
 ### Declaration 
-![declaration](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/95f2023b-bd0b-4e7e-a548-cf50f2293e2b)
+![image](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/61b78e8f-6ffd-4e98-ad3e-e92bf9e72090)
 ### Using Arithematics
-![using](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/1903a651-9a22-487c-9f29-0cd07b7a0abb)
+![image](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/4deff60d-f17e-4c61-a7b6-717aef6333c1)
 ### Using Maths Functions
-![using maths function](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/aef1611f-03eb-47d3-8de8-d36c6a0a900f)
+![image](https://github.com/Prince-Pratap/bigIntLibOOP/assets/128032381/1bda27ab-57c7-4b93-98fa-105a4bbd3f7d)
+
 
 
 
