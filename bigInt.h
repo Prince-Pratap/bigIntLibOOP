@@ -177,8 +177,8 @@ public:
         {
             result = convert(add(this->num, b.num));
             result.isNeg = (this->isNeg and b.isNeg);
-            return result;
         }
+            return result;
     }
     bigInt operator-(const bigInt &b)
     {
@@ -201,8 +201,8 @@ public:
                 result = convert(subtract(this->num, b.num));
             else
                 result = convert(subtract(b.num, this->num));
-            return result;
         }
+            return result;
     }
     bigInt operator*(const bigInt &b)
     {
